@@ -1,1 +1,17 @@
-["__leandr.0"]
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const token = 'MTA4MTgzNDk4NTI3Njg0MjA5NA.GCQWJT.ZMb6n5vOaTWbIpoVgudlYxyagH4CTmLAZVfM1U';
+const channelId = '1081846289278435412'; // ID del canal donde se enviará el mensaje
+const interval = 1000 * 60 * 60 * 24; // Intervalo de 24 horas en milisegundos
+
+client.on('ready', () => {
+  console.log('El bot está listo.');
+  setInterval(() => {
+    const date = new Date().toLocaleDateString(); // Obtiene la fecha actual
+    const message = `¡Hola a todos! Hoy es ${date}.`; // Crea el mensaje a enviar
+    const channel = client.channels.cache.get(channelId); // Obtiene el canal donde se enviará el mensaje
+    channel.send(message); // Envía el mensaje
+  }, interval);
+});
+
+client.login(token);
